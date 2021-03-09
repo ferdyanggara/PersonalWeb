@@ -11,6 +11,8 @@ import Icon from "@material-ui/core/Icon";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import { useDispatch } from "react-redux";
 import { deleteNews } from "../store/actions/newsActions";
+import { useHistory, withRouter } from "react-router-dom";
+
 const useStyles = makeStyles({
   root: {
     minWidth: 300,
@@ -28,8 +30,13 @@ const useStyles = makeStyles({
 
 const Jumbotron = ({ id, title, content }) => {
   const classes = useStyles();
+  let history = useHistory();
 
   const dispatch = useDispatch();
+
+  const goToDetails = () => {
+    history.push(`/details/${id}`);
+  };
 
   return (
     <Card className={classes.root}>
@@ -56,8 +63,9 @@ const Jumbotron = ({ id, title, content }) => {
             </Button>
           </div>
           <Typography variant="body2" color="textSecondary" component="p">
-            {content}
+            {content.slice(0, 100).concat("...")}
           </Typography>
+          <Button onClick={goToDetails}>See more ></Button>
         </CardContent>
       </CardActionArea>
     </Card>

@@ -12,6 +12,9 @@ import { createStore, combineReducers } from "redux";
 import newsReducer from "./store/reducers/newsReducer";
 import { Provider } from "react-redux";
 import InitialPage from "./screen/InitialPage";
+import AddPage from "./components/AddPage";
+import DetailScreen from "./components/DetailScreen";
+
 const rootReducer = combineReducers({
   news: newsReducer,
 });
@@ -28,9 +31,12 @@ const App = () => {
             <InitialPage />
           </Route>
           <Route exact path="/add-news">
-            <HomePage>
+            <AddPage>
               <AddNews />
-            </HomePage>
+            </AddPage>
+          </Route>
+          <Route exact path="/details/:id">
+            <DetailScreen />
           </Route>
         </Switch>
       </Router>
