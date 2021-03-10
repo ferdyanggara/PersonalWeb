@@ -64,10 +64,10 @@
 //         onSubmit={(values) => {
 //           console.log("edit state", editState);
 //           if (editState) {
-//             dispatch(editNews(contentObj.id, values.title, values.description));
+//             // dispatch(editNews(contentObj.id, values.title, values.description));
 //             editState = false;
 //           } else {
-//             dispatch(addNews(index, values.title, values.description));
+//             // dispatch(addNews(index, values.title, values.description));
 //             setIndex((prev) => prev + 1);
 //           }
 //         }}

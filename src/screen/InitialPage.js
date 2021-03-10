@@ -15,6 +15,7 @@ const InitialPage = () => {
 
   const allNews = useSelector((state) => state.news);
   const { error, news, loading } = allNews;
+  console.log("news", news);
   return (
     <>
       {loading ? (

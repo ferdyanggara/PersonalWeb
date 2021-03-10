@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import newsReducer, { newsDetailReducers } from "./reducers/newsReducer";
+import { newsReducer, newsDetailReducers } from "./reducers/newsReducer";
 
 const middleware = [thunk];
 
@@ -10,7 +10,10 @@ const rootReducer = combineReducers({
   newsDetail: newsDetailReducers,
 });
 
-const initialState = {};
+const initialState = {
+  // news: [],
+  // loading: true,
+};
 
 const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
 

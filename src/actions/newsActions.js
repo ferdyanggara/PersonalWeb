@@ -5,6 +5,9 @@ import {
   NEWS_DETAIL_REQUEST,
   NEWS_DETAIL_REQUEST_SUCCESS,
   NEWS_DETAIL_REQUEST_FAILED,
+  ADD_NEWS_REQUEST,
+  ADD_NEWS_SUCCESS,
+  ADD_NEWS_FAILED,
 } from "../constants/newsConstant";
 
 import axios from "axios";
@@ -40,6 +43,30 @@ export const listNewsDetail = (id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: NEWS_DETAIL_REQUEST_FAILED,
+      payload: err.response && err.response.data.message ? err.response.data.message : err.message,
+    });
+  }
+};
+export const addNews = ({ id, title, description, image }) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_NEWS_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.post(`${SERVER_URL}post/add-post`, { id, title, description, image }, config);
+
+    console.log("data", data);
+    dispatch({
+      type: ADD_NEWS_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ADD_NEWS_FAILED,
       payload: err.response && err.response.data.message ? err.response.data.message : err.message,
     });
   }
