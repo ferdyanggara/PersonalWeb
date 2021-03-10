@@ -8,39 +8,34 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import dummyData from "./contents/dummy-data";
 import AddNews from "./components/AddNews";
-import { createStore, combineReducers } from "redux";
-import newsReducer from "./store/reducers/newsReducer";
-import { Provider } from "react-redux";
+
 import InitialPage from "./screen/InitialPage";
 import AddPage from "./components/AddPage";
 import DetailScreen from "./components/DetailScreen";
 
-const rootReducer = combineReducers({
-  news: newsReducer,
-});
-
-const store = createStore(rootReducer);
-
 const App = () => {
   return (
-    <Provider store={store}>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <InitialPage />
-          </Route>
-          <Route exact path="/add-news">
-            <AddPage>
-              <AddNews />
-            </AddPage>
-          </Route>
-          <Route exact path="/details/:id">
-            <DetailScreen />
-          </Route>
-        </Switch>
-      </Router>
-    </Provider>
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <InitialPage />
+        </Route>
+        <Route exact path="/add-news">
+          <AddPage>
+            <AddNews />
+          </AddPage>
+        </Route>
+        <Route exact path="/edit-news/:id">
+          <AddPage>
+            <AddNews />
+          </AddPage>
+        </Route>
+        <Route exact path="/details/:id">
+          <DetailScreen />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 
